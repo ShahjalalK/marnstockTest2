@@ -1,23 +1,31 @@
-import mongoose from "mongoose"
+import mongoose from "mongoose";
 
 const postSchema = new mongoose.Schema({
     title : {
         type : String,
-        required : true
+        required : true,
+        trim : true
     },
-    body : {
-        type : String,
-        required : true
-    },
-    photo : {
+    description : {
         type : String,
         required : true,
-        default : 'no photo'
+        trim : true
     },
-    postedBy : {
+    likes : [{
+        type : mongoose.Types.ObjectId,
+        ref : 'User'
+    }],
+    comments : [{
+            text : String,
+            postedBy : {type : mongoose.Types.ObjectId, ref : 'User'}
+    }],
+    photo : {
+        type : String
+    },
+    postById : {
         type : mongoose.Types.ObjectId,
         ref : 'User'
     }
 })
 
-export default mongoose.models.UserPost || mongoose.model('UserPost', postSchema)
+export default mongoose.models.Post || mongoose.model("Post", postSchema)

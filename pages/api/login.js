@@ -17,6 +17,7 @@ export default async(req, res) => {
         const token = jwt.sign({userId : user._id}, process.env.TOKEN_SECRET_KEY, {
             expiresIn: '1h'           
         })
-        res.status(200).json({token})
+        const {name, email, _id} = user
+        res.status(200).json({token, user : {name, email, _id}, message : `${name} is login`})
     }
 }

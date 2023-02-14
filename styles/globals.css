@@ -7,7 +7,13 @@
         @apply bg-gray-200
     }
     .container{
-        @apply max-w-7xl mx-auto
+        @apply max-w-5xl mx-auto
+    }
+    .createModel{
+        @apply fixed hidden  top-0 left-0 w-full h-screen bg-black/25 z-50
+    }
+    .createModel.active{
+        @apply block
     }
 }
 
@@ -15,3 +21,5 @@
 input[type=number]::-webkit-inner-spin-button {
     opacity: 1;
   }
+
+  @import url('https://fonts.googleapis.com/css2?family=Lobster+Two:ital,wght@0,700;1,700&display=swap');
