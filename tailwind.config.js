@@ -1,17 +1,19 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    "./pages/index.jsx",
-    "./pages/accounts/loginComponents.jsx",
-    "./pages/accounts/login.jsx",
-    "./pages/accounts/signup.jsx",
-    "./pages/profile/[id].jsx",
-    "./pages/editprofile/[id].jsx",
-    "./pages/test.jsx",
-    "./pages/navbar.jsx",
-    "./pages/navbar2.jsx",
-    "./pages/layout.jsx",
-    "./pages/components/create.jsx",
+    "./pages/index.jsx",    
+    "./pages/auth/signin.jsx",    
+    "./components/header.jsx",
+    "./components/feeds/feed.jsx",
+    "./components/feeds/miniPorfile.jsx",
+    "./components/feeds/suggestions.jsx",
+    "./components/feeds/stories.jsx",
+    "./components/feeds/story.jsx",
+    "./components/feeds/posts.jsx",
+    "./components/feeds/post.jsx",
+
+    "./pages/coutertest/recoiltest.jsx",
+    "./pages/coutertest/counterbtn.jsx",
     
     
   ],
@@ -22,5 +24,9 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/forms'),
+    require('tailwind-scrollbar'),
+    require('tailwind-scrollbar-hide'),
+  ],
 }
