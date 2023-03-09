@@ -11,9 +11,13 @@ module.exports = {
     "./components/feeds/story.jsx",
     "./components/feeds/posts.jsx",
     "./components/feeds/post.jsx",
+    "./components/modal.jsx",
 
     "./pages/coutertest/recoiltest.jsx",
     "./pages/coutertest/counterbtn.jsx",
+
+
+    "./pages/testfirebase.jsx",
     
     
   ],

@@ -28,7 +28,9 @@ export default function Stories() {
           const { _id, avatar, firstName, lastName } = item;
           return (
             
-              <Story  _id ={_id}  avatar ={avatar} firstName ={firstName} lastName={lastName} />
+             <div key={_id}>
+               <Story  _id ={_id}  avatar ={avatar} firstName ={firstName} lastName={lastName} />
+             </div>
             
           );
         })}

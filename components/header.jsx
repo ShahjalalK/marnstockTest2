@@ -9,20 +9,24 @@ import ImageLoader from "./imgLoader";
 import { signIn, signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { useRecoilState } from "recoil";
+import { ModalState } from "@/atoms/modalato";
 
 export default function Header() {
   const {data : session} = useSession()
+  
+  const [open, setOpen] = useRecoilState(ModalState)
    const router = useRouter()
   return (
     <div className=" shadow-sm border-b bg-white py-5 sticky top-0 z-50">
       <div className="flex items-center justify-between bg-white container">
         {/* Left */}
         <div className=" w-36 relative hidden lg:inline-grid cursor-pointer" onClick={() => router.push("/")}>
-          <Image loader={ImageLoader} src="https://links.papareact.com/ocw" width={350} height={350} className=" object-contain" />
+          <Image loader={ImageLoader} src="https://links.papareact.com/ocw" width={350} height={350} className=" object-contain" alt="A" />
           
         </div>
         <div className="w-10 h-10 lg:hidden flex-shrink-0 cursor-pointer">
-          <Image loader={ImageLoader} src="https://links.papareact.com/jjm" width={15} height={15} className=" w-full object-cover" />
+          <Image loader={ImageLoader} src="https://links.papareact.com/jjm" width={15} height={15} className=" w-full object-cover" alt="B" />
           
         </div>
 
@@ -34,29 +38,30 @@ export default function Header() {
       
         {/* Right */}
         <div className="flex items-center justify-end space-x-4">
-        <Link href="/" ><AiFillHome className="text-2xl" /></Link>
+        <Link href="/" ><AiFillHome className="text-2xl cursor-pointer" /></Link>
 
-        {session ? (
+        {session ? 
             <>
             
-            <AiOutlineMenu className="text-2xl" />
+            <AiOutlineMenu className="text-2xl cursor-pointer" />
       <div className=" relative">
-      <FaRegPaperPlane className="text-2xl" />
-      <div className=" absolute -top-1 -right-2 bg-red-500 rounded-full flex justify-center items-center text-white animate-pulse w-5 h-5">3</div>
+      <FaRegPaperPlane className="text-2xl cursor-pointer" />
+      <div className=" absolute -top-1 -right-2 bg-red-500 rounded-full flex justify-center cursor-pointer items-center text-white animate-pulse w-5 h-5">3</div>
       </div>
-      <BiPlusCircle className="text-2xl"/>
-      <MdBusinessCenter className="text-2xl"/>
-      <AiOutlineHeart className="text-2xl"/>
+      <BiPlusCircle className="text-2xl cursor-pointer" onClick={() => setOpen(true)}/>
+      <MdBusinessCenter className="text-2xl cursor-pointer"/>
+      <AiOutlineHeart className="text-2xl cursor-pointer"/>
       <div className="w-10 h-10 rounded-full overflow-hidden ">
-      <Image loader={ImageLoader} src={session?.user.image} width={50} height={50} alt="profile" className="w-full object-cover cursor-pointer" onClick={signOut} />
+      <Image src={session?.user.image} width={50} height={50} alt="profile" className=" w-full object-cover  cursor-pointer" onClick={signOut} loader={ImageLoader} />
+      
       </div>
             
             </>
-        ) : (
+         : 
           <>
           <button onClick={ signIn }>Signin</button>
           </>
-        )}
+        }
       
         </div>
       </div>
